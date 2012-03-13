@@ -1,0 +1,262 @@
+/* HTML5 ✰ Boilerplate
+ * ==|== normalize ==========================================================
+ */
+
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+
+html { overflow-y: hidden; -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-size: 13px; line-height: 1.231; }
+body, button, input, select, textarea { font-family: sans-serif; color: #222; }
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+a { color: #00e; }
+a:visited { color: #551a8b; }
+a:hover { color: #06e; }
+a:focus { outline: thin dotted; }
+
+/* Improve readability when focused and hovered in all browsers: h5bp.com/h */
+a:hover, a:active { outline: 0; }
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+/*
+ * 1. Improve image quality when scaled in IE7: h5bp.com/d
+ * 2. Remove the gap between images and borders on image containers: h5bp.com/e
+ */
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+button, input, select, textarea { margin: 0; vertical-align: baseline; *vertical-align: middle; }
+button, input { line-height: normal; *overflow: visible; }
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; }
+input:valid, textarea:valid {  }
+input:invalid, textarea:invalid { background-color: #f0dddd; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+
+/* ==|== primary styles =====================================================
+   Author:  Jason Kadrmas @itooamaneatguy
+   Company: KadrmasConcepts LLC
+   ========================================================================== */
+
+@font-face {
+  font-family:'League Gothic';
+    src: url('type/League_Gothic-webfont.eot');
+    src: url('type/League_Gothic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/League_Gothic-webfont.woff') format('woff'),
+         url('type/League_Gothic-webfont.ttf') format('truetype'),
+         url('type/League_Gothic-webfont.svg#MisoCubiq') format('svg');
+}
+
+@import "mixins";
+@import "black.theme";
+
+@blue: #8ac3cd;
+
+body {
+  font-family:helvetica, arial, sans-serif;
+  background: #EEE;
+  color: #333;
+  overflow-y: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, ul.menu li {
+    font-family: 'League Gothic', helvetica, arial, sans-serif;
+}
+
+h1 { font-size:5.0em; }
+footer {}
+
+body.stage {
+  header {
+    .gradient(#333, black);
+  }
+}
+
+span.blue {
+  color:@blue;
+}
+
+.scene {
+    
+    position:absolute;
+
+    header {
+
+        .gradient(#333, black);
+
+        border-bottom: 1px solid white;
+
+        h3 {
+            float: left;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-size: 2.7em;
+        }
+
+        ul.menu {
+            
+            float: left;
+            margin: 0 0 0 3.0em;
+            padding: 0.3em 0 0 0;
+
+            li {
+                
+                display: inline-block;
+                list-style: none;
+                padding: 0 0.5em 0 0;
+
+                & a {
+                  display: block;
+                  text-decoration: none;
+                  font-size:1.7em;
+                }
+                
+                & a:hover, & a:visited {
+                    color: #333;
+                }
+            }
+        }
+
+    }
+    
+    article {
+        ul {
+            margin: 1.0em 0;
+            padding: 0 0 0 1.3em;
+        }
+
+        h3 {
+            font-size:3.0em;
+            margin: 0; 
+            padding: 0;
+            border-bottom: 6px solid #E6E6E6;
+        }
+    }
+}
+
+#main {
+  width: 100%;
+  margin: 0 2.0em 0 2.0em;
+
+  p.slogan {
+    text-align:left;
+    font-size: 1.5em;
+  }
+
+  ul.features {
+    font-size: 1.3em;
+  }
+}
+
+#documentation {
+  
+  width: 100%;
+
+  header {
+    padding: 0 0 0 2.0em;
+  }
+
+  .sidebar {
+    float: left;
+    background: #F4F4F4;
+    width:220px;
+    height:100%;
+    overflow-y: scroll;
+  }
+
+  h4 {
+    font-size: 2.0em;
+  }
+}
+
+.element {
+  position: absolute;
+}
+
+.button {
+  background-color: #EEE;
+  .gradient(#EEE, #CCC);
+  border: 1px solid #CCC;
+  border-bottom: 1px solid #BBB;
+  border-radius: 3px;
+  color: #333;
+  line-height: 1;
+  padding: 5px 10px;
+  text-align: center;
+  text-shadow: 0 1px 0 #EEE;
+}
+
+
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* prevent callout */
+.nocallout {-webkit-touch-callout: none;}
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+textarea[contenteditable] {-webkit-appearance: none;}
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if they have been set as display: none */
+.gifhidden {position: absolute; left: -100%;}
+
+/* For image replacement */
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.ir br { display: none; }
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden { display: none !important; visibility: hidden; }
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* Contain floats: h5bp.com/q */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+/* ==|== media queries ====================================================== */
+
+/* Landscape phones and down: iPhone, iPad, Android Phones */
+@media (max-width: 480px) { 
+  body { font-size: 11px; }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 980px) {}
+
+/* Large desktop */
+@media (min-width: 1200px) {}
