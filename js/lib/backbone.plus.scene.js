@@ -111,6 +111,20 @@
 		},
 
 		/*
+		*	Fetches an underscore template async and executes a callback.
+		*	@method : fetchTemplate
+		*	@param : path : path to template file
+		*	@param : callback : callback function to execute when loaded.
+		*/
+
+		fetchTemplate: function(path, callback) {
+			var _self = this;
+			$.get(path, function(contents) {
+				callback.call(_self, contents);
+			});
+		},
+
+		/*
 		*	Adds an element to our scene object.
 		*	@method : addElement
 		*	@param : key : unique key for the added view

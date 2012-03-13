@@ -8,24 +8,38 @@ define(['text!templates/documentation.html'], function(DocumentationTemplate){
 
   var DocumentationScene = Backbone.Scene.extend({
 
-    id: 'documentation',
-    tagName: 'div',
-    className: 'scene',
+	id: 'documentation',
+	tagName: 'div',
+	className: 'scene',
    
-    initialize: function() {},
+	initialize: function() {
+		_.bindAll(this);
+	},
 
-    render: function(container) {
-      this.renderTemplate(DocumentationTemplate, {}, container);
-      this.show();
-    },
-    
-    show: function() {
-      this.slideIn(App.stageWidth());
-    },
+	render: function(container) {
+		this.renderTemplate(DocumentationTemplate, {}, container);
+		this.docs = this.$el.find('.docs');
 
-    hide: function() {
-      this.slideOut(App.stageWidth());
-    }
+		this.show();
+	},
+	
+	show: function() {
+		this.slideIn(App.stageWidth());
+	},
+
+	hide: function() {
+		this.slideOut(App.stageWidth());
+	},
+
+	getSection: function(query) {
+		this.fetchTemplate(this.getPath(query), function(content) {
+			this.docs.html( this.compileTemplate(content, {}) );
+		});
+	},
+
+	getPath: function(query) {
+		return 'js/app/templates/documentation/' + query + '.html';
+	}
 
   });
   

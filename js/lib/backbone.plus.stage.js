@@ -102,6 +102,24 @@
 		},
 
 		/*
+			Retrieves current scene from the model
+			@method : currentScene
+		*/
+
+		currentScene: function() {
+			return this.model.get('scene');
+		},
+
+		/*
+			Retrieves current scene name from the model
+			@method : currentSceneName
+		*/
+
+		currentSceneName: function() {
+			return this.model.get('sceneName');
+		},
+
+		/*
 			A method to calculate a percentage value based on the current width of the viewport.
 			@method : calcWidth
 			@param ratio : percentage of width

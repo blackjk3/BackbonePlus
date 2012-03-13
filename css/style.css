@@ -178,7 +178,6 @@ body {
   font-family: helvetica, arial, sans-serif;
   background: #EEE;
   color: #333;
-  overflow-y: hidden;
 }
 h1,
 h2,
@@ -192,6 +191,14 @@ ul.menu li {
 h1 {
   font-size: 5.0em;
 }
+pre {
+  background: #DDD;
+  display: block;
+  border: 1px solid #CCC;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+}
 body.stage header {
   background-color: #333333;
   background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#000000));
@@ -202,6 +209,9 @@ body.stage header {
 }
 span.blue {
   color: #8ac3cd;
+}
+.viewport {
+  height: 100%;
 }
 .scene {
   position: absolute;
@@ -240,6 +250,9 @@ span.blue {
 .scene header ul.menu li a:hover, .scene header ul.menu li a:visited {
   color: #333;
 }
+.scene article {
+  height: 100%;
+}
 .scene article ul {
   margin: 1.0em 0;
   padding: 0 0 0 1.3em;
@@ -262,20 +275,74 @@ span.blue {
   font-size: 1.3em;
 }
 #documentation {
+  position: relative;
   width: 100%;
+  height: 100%;
 }
 #documentation header {
   padding: 0 0 0 2.0em;
 }
+#documentation .sidebar::-webkit-scrollbar, #documentation .docs::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+#documentation .sidebar::-webkit-scrollbar-track-piece, #documentation .docs::-webkit-scrollbar-track-piece {
+  margin: 10px;
+  border-radius: 4px;
+}
+#documentation .sidebar::-webkit-scrollbar-thumb:vertical, #documentation .docs::-webkit-scrollbar-thumb:vertical {
+  height: 25px;
+  background-color: #bbb;
+  -border-radius: 4px;
+}
+#documentation .sidebar:hover::-webkit-scrollbar-thumb:vertical, #documentation .docs:hover::-webkit-scrollbar-thumb:vertical {
+  background-color: #666;
+}
 #documentation .sidebar {
-  float: left;
+  position: relative;
+  padding: 0 2.0em 0 2.0em;
   background: #F4F4F4;
-  width: 220px;
+  width: 15%;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
+}
+#documentation .sidebar a, #documentation .sidebar a:visited {
+  color: #333;
+}
+#documentation .sidebar a:hover {
+  font-weight: bold;
+  color: #8ac3cd;
+}
+#documentation .docs {
+  /*position: fixed;
+    top: 40px;
+    bottom: 0;
+    right: 0;
+    left: 20%;
+    padding: 0 2.0em 0 2.0em;
+    overflow-x: hidden;
+    overflow-y: scroll;*/
+
+  padding: 0 2.0em 40px 2.0em;
+  position: fixed;
+  top: 40px;
+  bottom: 0;
+  right: 0;
+  left: 20%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-align: left;
 }
 #documentation h4 {
   font-size: 2.0em;
+  padding: 0;
+  margin: 1.0em 0 0.5em 0;
+}
+#documentation h5 {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 1.0em 0 0.5em 0;
 }
 .element {
   position: absolute;
@@ -372,6 +439,12 @@ textarea[contenteditable] {
 @media (max-width: 480px) {
   body {
     font-size: 11px;
+  }
+  #documentation .sidebar {
+    width: 25%;
+  }
+  #documentation .docs {
+    left: 35%;
   }
 }
 /* Landscape phone to portrait tablet */

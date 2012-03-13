@@ -1,0 +1,62 @@
+<h4>Introduction</h4>
+<p>The idea behind Backbone+ is simple.  Make development of HTML apps and games easier.  Backbone+ aims to do this by reducing some of the redundant boilerplate that needs to be written each time an app is created. Layout, animation, transisitons, PhoneGap integration are hard.  But it doesn't have to be. Combining require.js, zepto and a little special sauce we can make building apps easy and fun.</p>
+
+<h4>Concepts</h4>
+<p>Each Backbone+ application has several components.  Every visual object in Backbone+ is inherited from Backbone.Element.  Backbone.Scene and Backbone.Stage are specialized visual elements based on Backbone.Element.  Below is each object and how different components are attached.</p>
+
+<pre>
+Backbone.Element -> Backbone.Scene -> Backbone.Stage
+|── Properties
+|── Drawing
+|── Animation
+|                   |── transitions
+|                   |── templating
+|                   |── element management
+|                   |                      | viewport
+|                   |                      | scene management
+
+</pre>
+
+
+<h4>App Structure</h4>
+<pre>
+├── js
+|   |── app
+|   |	|── main.js
+|   |	|── router.js
+|   |	|── templates
+|   |	|── models
+|   |	|── views
+|   |── libs
+|   |	|── underscore.js
+|   |	|── backbone.js
+|   |	|── require.js
+│   ├── modules
+│   └── templates
+├── css
+├── img
+└── index.html
+</pre>
+
+<h4>Main.js</h4>
+<p>Main (js/app/main.js) is the entry point for a Backbone+ application.  The first task is to setup a Backbone.Stage.  The stage object will handle all stage management tasks, such as resizing, calculating width and height percentages, etc.  After creating a stage object the next step is to create a router and add it to our stage.  Finally, we can optionally setup our app for use with PhoneGap.</p>
+
+<pre>
+// Call main from a require script block.
+&lt;script data-main="js/app/main" src="js/libs/require.js">&lt;/script>
+
+// Sample main.js
+require(['router'], function(AppRouter) {
+
+  // App Ready
+  $(document).ready(function() {
+	App = Backbone.Stage();
+	App.router = new AppRouter();
+  });
+
+  // PhoneGap Ready
+  $(document).on("deviceready", function() {
+  	Backbone.PhoneGap.initialize();
+  });
+});
+</pre>

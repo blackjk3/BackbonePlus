@@ -12,7 +12,8 @@
 		routes: {
 			// Define some URL routes
 			'/main': 'main',
-			'/documentation/*': 'documentation',
+			'/documentation/:query': 'documentation',
+			'/documentation': 'documentation',
 
 			// Default/ Base route
 			'*actions': 'base'
@@ -28,9 +29,24 @@
 			App.changeScene(scene, 'main');
 		},
 
-		documentation: function() {
-			var scene = new DocumentationScene();
-			App.changeScene(scene, 'documentation');
+		documentation: function(query) {
+			
+			var scene,
+				section = 'intro',
+				currentSceneName = App.currentSceneName();
+
+			if(currentSceneName !== 'documentation') {
+				scene = new DocumentationScene();
+				App.changeScene(scene, 'documentation');
+			} else {
+				scene = App.currentScene();
+			}
+
+			if(query) {
+				section = query;
+			}
+
+			scene.getSection(section);
 		},
 
 		base: function() {
