@@ -8,14 +8,7 @@
 
 	
 	// Internal Stage model
-	var StageModel = Backbone.Model.extend({
-		
-		ORIENTATIONS: {
-			PORTRAIT: 'portrait',
-			LANDSCAPE: 'landscape'
-		}
-
-	});
+	var StageModel = Backbone.Model.extend({});
 
 	Backbone.Stage = Backbone.Scene.extend({
 
@@ -23,8 +16,12 @@
 		model: new StageModel(),
 		router: null,
 
+		EVENTS: {
+			STAGE_RESIZE: 'stage/resize'
+		},
+
 		initialize: function(opts) {
-			
+			var _self = this;
 			// Add the stage class to body
 			this.$el.addClass('stage');
 
@@ -52,6 +49,14 @@
 
 			// Render right away since extending logic could add templates, etc.
 			this.render();
+
+			// Listen to resize and respond
+			$(window).on('resize', function() {
+				_self.resize(window.innerWidth || (window.document.documentElement.clientWidth || window.document.body.clientWidth),
+							window.innerHeight || (window.document.documentElement.clientHeight || window.document.body.clientHeight));
+
+				_self.trigger( _self.EVENTS.STAGE_RESIZE );
+			});
 		},
 
 		// Currently a no-op. Should be overridden
@@ -66,11 +71,18 @@
 
 		resize: function(w, h) {
 
+			var orientation = 'portrait';
+
+			if(w > h) {
+				orientation = 'landscape';
+			}
+
 			this.model.set({
 				width:Math.floor(w),
 				height: Math.floor(h),
 				halfWidth: Math.floor(w/2),
-				halfHeight: Math.floor(h/2)
+				halfHeight: Math.floor(h/2),
+				orientation: orientation
 			});
 		},
 
@@ -155,6 +167,15 @@
 		
 		stageHeight: function() {
 			return this.model.get('height');
+		},
+
+		/*
+			Method to get orientation of screen
+			@method : stageOrientation
+		*/
+		
+		stageOrientation: function() {
+			return this.model.get('orientation');
 		}
 
 	});
