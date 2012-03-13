@@ -17,7 +17,8 @@
 		router: null,
 
 		EVENTS: {
-			STAGE_RESIZE: 'stage/resize'
+			STAGE_RESIZE: 'stage/resize',
+            STAGE_SCENE_CHANGE: 'stage/scene/change'
 		},
 
 		initialize: function(opts) {
@@ -110,7 +111,7 @@
 
 			scene.render( this.content.$el );
 
-			this.trigger('stage/scene/change', scene, name);
+			this.trigger(this.EVENTS.STAGE_SCENE_CHANGE, scene, name);
 		},
 
 		/*
