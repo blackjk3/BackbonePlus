@@ -64,7 +64,7 @@
 
 		/*
 		*	Wrapper to assign css.
-		*	Example: element.css({borderRadius: '1px'}});
+		*	Example: element.css({borderRadius: '1px'});
 		*
 		*	@method : css
 		*	@param : args : object with style arguments to set
