@@ -157,7 +157,7 @@
 		*/
 
 		removeAll: function() {
-			children = null;
+			this.children = null;
 		},
 
 		/*
