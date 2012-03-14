@@ -28,6 +28,7 @@
 		// Can be overridden by extended class.
 		hide: function() {
 			this.$el.hide();
+			this.destroy();
 		},
 
 		/*
