@@ -30,10 +30,15 @@
 		*	@param : value : value to assign
 		*/
 		
-		set: function(name, value) {
+		set: function(name, value, redraw) {
 			
+			var doDraw = redraw || true;
+
 			this[name] = value;
-			this.draw();
+
+			if(doDraw) {
+				this.draw();
+			}
 			
 			return this;
 		},
@@ -46,9 +51,10 @@
 		*	@param : args : object with arguments to set
 		*/
 
-		attr: function(args) {
+		attr: function(args, redraw) {
 
-			var props = {};
+			var props = {},
+				doDraw = redraw || true;
 
 			for (var key in args) {
 				if( this[key] !== args[key]) {
@@ -57,7 +63,10 @@
 			}
 
 			_.extend(this, props);
-			this.draw();
+
+			if(doDraw) {
+				this.draw();
+			}
 
 			return this;
 		},

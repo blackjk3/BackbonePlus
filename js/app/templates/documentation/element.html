@@ -20,13 +20,13 @@ var element = new NewAndImprovedElement();
 <h4>Functions</h4>
 
 <h5>set( name, value )</h5>
-<p>Sets a specific property on a Backbone.Element. Set will trigger a redraw. Redrawn properties include x, y, z, w, h, alpha, rotation, and scale.</p>
+<p>Sets a specific property on a Backbone.Element. Set will trigger a redraw. Redrawn properties include x, y, z, w, h, alpha, rotation, and scale. Note: If you do not want to redraw there is a third optional parameter where false can be passed in. Ex. set( name, value, false )</p>
 <pre>
 element.set('x', 200);
 </pre>
 
 <h5>attr( args )</h5>
-<p>Sets multiple properties on a Backbone.Element. Attr also triggers a redraw.</p>
+<p>Sets multiple properties on a Backbone.Element. Attr also triggers a redraw.  Note: attr( args, false ) will skip the redraw.</p>
 <pre>
 element.attr({x:400, y:300, z:1, w:200, h:200, rotation:45, alpha:0.3}});
 </pre>
