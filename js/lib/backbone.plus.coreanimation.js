@@ -6,6 +6,8 @@
 
 (function (Backbone, _) {
 
+	"use strict";
+
 	var tick, tickID, FPS = 50, frame = 1, isAnimating = false,
 
 		onFrame = window.requestAnimationFrame ||
@@ -132,6 +134,8 @@
 
 
 (function (Backbone, _) {
+
+	"use strict";
 
 	var Core = Backbone.CoreAnimation;
 

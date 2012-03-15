@@ -6,6 +6,8 @@
 
 (function(Backbone, _) {
 
+	"use strict";
+
 	Backbone.Element = Backbone.View.extend ({
 		className: 'element'
 	});

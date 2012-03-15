@@ -7,6 +7,8 @@
 
 (function (Backbone, _, $) {
 
+	"use strict";
+
 	var defaults = {
 		duration: 400,
 		easing: ''

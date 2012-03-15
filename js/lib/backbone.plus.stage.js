@@ -4,8 +4,9 @@
  * License: MIT
  */
 
-(function(Backbone, _) {
+(function(Backbone, _, $) {
 
+	"use strict";
 	
 	// Internal Stage model
 	var StageModel = Backbone.Model.extend({});
@@ -181,4 +182,4 @@
 
 	});
 
-}).call(this, this.Backbone, this._);
+}).call(this, this.Backbone, this._, Zepto);
