@@ -6,6 +6,8 @@
 
 (function (Backbone, _) {
 
+	"use strict";
+
 	Backbone.Easing = { Linear: {}, Quadratic: {}, Cubic: {}, Quartic: {}, Quintic: {}, Sinusoidal: {}, Exponential: {}, Circular: {}, Elastic: {}, Back: {}, Bounce: {} };
 
 

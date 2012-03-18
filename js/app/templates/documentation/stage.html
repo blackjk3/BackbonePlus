@@ -1,0 +1,12 @@
+<h4>Backbone.Stage</h4>
+<p>In a Backbone+ application there is one special extended scene that represents the stage.  The stage will help with the task of managing your application's viewport properties and current scene.</p>
+
+<h4>Creating a Backbone.Stage</h4>
+<p>Most likely you will want to create your stage after DOM ready has fired.  Also, you will want to attach a new router instance to the stage.  This way the stage can help with scene changes.</p>
+<pre>
+// App Ready
+$(document).ready(function() {
+	App = new Backbone.Stage();
+	App.router = new AppRouter();
+});
+</pre>
