@@ -38,7 +38,7 @@
 			frame = 1;
 			isAnimating = true;
 
-			/*if (onFrame) {
+			if (onFrame) {
 				tick = function () {
 					
 					if(tick) {
@@ -48,9 +48,9 @@
 				};
 
 				tick();
-			} else {*/
+			} else {
 				tick = setInterval(this.step, 1000 / FPS);
-			//}
+			}
 
 		},
 
@@ -59,7 +59,7 @@
 			
 			if (typeof tick === "number") clearInterval(tick);
 
-			/*var onFrame = window.cancelRequestAnimationFrame ||
+			var onFrame = window.cancelRequestAnimationFrame ||
 				window.webkitCancelRequestAnimationFrame ||
 				window.mozCancelRequestAnimationFrame ||
 				window.oCancelRequestAnimationFrame ||
@@ -67,7 +67,7 @@
 				null;
 
 			if (onFrame) onFrame(tickID);
-			tick = null;*/
+			tick = null;
 
 			// Remove all callbacks on this object
 			this.off();
@@ -86,20 +86,6 @@
 
 			console.log("CORE :: ANIM :: STEP");
 			this.trigger(this.events.CORE_ANIMATION_FRAME, { frame: frame++ });
-
-			/*loops = 0;
-			this.curTime = Date.now();
-			if (this.curTime - nextGameTick > 60 * skipTicks) {
-				nextGameTick = this.curTime - skipTicks;
-			}
-			while (this.curTime > nextGameTick) {
-				Crafty.trigger("EnterFrame", { frame: frame++ });
-				nextGameTick += skipTicks;
-				loops++;
-			}
-			if (loops) {
-				Crafty.DrawManager.draw();
-			}*/
 		},
 
 		registerListener: function( key ) {
@@ -187,7 +173,7 @@
 				this.tweens[i].stop();
 			}
 
-			this.tweens = [];
+			this.tweens.length  = 0;
 		},
 
 		/*

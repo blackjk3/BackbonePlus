@@ -155,7 +155,7 @@
 		},
 
 		/*
-		*	Removes all views from scene
+		*	Removes all elements from scene
 		*	@method : removeAll
 		*/
 

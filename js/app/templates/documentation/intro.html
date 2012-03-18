@@ -1,5 +1,5 @@
 <h4>Introduction</h4>
-<p>The idea behind Backbone+ is simple.  Make development of HTML apps and games with Backbone easier.  Backbone+ aims to do this by reducing some of the redundant boilerplate that needs to be written each time an app is created. Layout, animation, transisitons, PhoneGap integration are hard.  But it doesn't have to be. Combining require.js, zepto and a little special sauce we can make building apps easy and fun.</p>
+<p>The idea behind Backbone+ is simple.  Make development of HTML apps and games with Backbone easier.  Backbone+ aims to do this by reducing some of the redundant boilerplate that needs to be written each time an app is created. Layout, animation, transisitons, PhoneGap integration are hard.  But it doesn't have to be. Combining require.js, zepto and a little special sauce we can make building apps easy and fun. <strong>In fact this entire site is made with Backbone+.</strong></p>
 
 <h4>Concepts</h4>
 <p>Each Backbone+ application has several components.  Every visual object in Backbone+ is inherited from Backbone.Element.  Backbone.Scene and Backbone.Stage are specialized visual elements based on Backbone.Element.  Below is each object and some of the responsibilities they contain.</p>
@@ -63,7 +63,7 @@ require(['router'], function(AppRouter) {
 
   // App Ready
   $(document).ready(function() {
-	App = Backbone.Stage();
+	App = new Backbone.Stage();
 	App.router = new AppRouter();
   });
 

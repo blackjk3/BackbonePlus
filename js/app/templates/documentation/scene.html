@@ -1,0 +1,132 @@
+<h4>Backbone.Scene</h4>
+<p>Each section of your app or game should be represented as a Backbone.Scene. A Backbone.Scene extends all the functionallity of a Backbone.Element and adds additional features.</p>
+
+<h4>Creating & Extending a Scene</h4>
+<p>Below is an example that extends a Backbone.Scene using require.js.  The scene uses an external underscore template for displaying HTML. Note, there are three default methods to every Backbone.Scene.  Render, show, and hide.  As shown below, you can override them to add functionallity to an extended Backbone.Scene</p>
+<pre>
+define(['text!templates/main.html'], function(MainTemplate){
+
+  var MainScene = Backbone.Scene.extend({
+
+    id: 'main',
+    tagName: 'div',
+    className: 'scene',
+   
+    initialize: function() {},
+
+    render: function(container) {
+      this.renderTemplate(MainTemplate, {}, container);
+      this.show();
+    },
+    
+    show: function() {
+      this.slideIn(App.stageWidth());
+    },
+
+    hide: function() {
+      this.slideOut(App.stageWidth());
+    }
+
+  });
+  
+  return MainScene;
+});
+</pre>
+
+<h4>Default Functions</h4>
+
+<h5>render()</h5>
+<p>Inherited from Backbone.View. The default implementation of render is a no-op. Override this function with your own logic. By default, on a scene change event Backbone.Stage will call the render() method automatically and pass the stage container to the scene.</p>
+<pre>
+
+</pre>
+
+<h5>show()</h5>
+<p>Show describes how a scene will be shown. Most likely show() will be called in the render method.   The default implementation of show is a simple $el.show().  Override this function with built in scene transitions such as slideIn() or fadeIn()</p>
+<pre>
+scene.show();
+</pre>
+
+<h5>hide()</h5>
+<p>Hide describes how a scene will be hidden. Most likely hide() will be called by Backbone.Stage during a scene change event.  The default implementation of hide is a simple $el.hide() followed by a destroy().  Override this function with built in scene transitions such as slideOut() or fadeOut().  Note, if you override this method and do not use a built in scene transition you willl have to call destroy() manually to cleanup the scene.</p>
+<pre>
+scene.hide();
+</pre>
+
+<h5>destroy()</h5>
+<p>Destroys the current scene.  Actions include, removing scene from DOM, removing any scene children, unbinding event listeners, stopping and removing any tweens, and destroying any created models.</p>
+<pre>
+scene.destroy();
+</pre>
+
+<h4>Child Functions</h4>
+
+<h5>addElement(key, child)</h5>
+<p>Adds a child element to a scene object. This could be a Backbone.Element.</p>
+<pre>
+scene.addElement('footer', footerElement);
+</pre>
+
+<h5>get(key)</h5>
+<p>Returns a child object based on a key.</p>
+<pre>
+var footer = scene.get('footer');
+</pre>
+
+<h5>removeElement(key)</h5>
+<p>Removes a child element from a scene object based on a key value.</p>
+<pre>
+scene.removeElement('footer');
+</pre>
+
+<h5>removeAll()</h5>
+<p>Removes all child elements from scene object.</p>
+<pre>
+scene.addElement('footer', footerElement);
+</pre>
+
+<h4>Template Functions</h4>
+
+<h5>renderTemplate(template, data, container) </h5>
+<p>Renders an underscore template assigns the $el to it, and appends it to a container.</p>
+<pre>
+scene.renderTemplate(MainTemplate, {}, container);
+</pre>
+
+<h5>compileTemplate(template, data)</h5>
+<p>Compiles an underscore template and returns the generated html.</p>
+<pre>
+var html = this.compileTemplate("&lt;div>Template in here&lt/div>", {});
+</pre>
+
+<h5>fetchTemplate(path, callback)</h5>
+<p>Fetches an underscore template async and executes a callback.</p>
+<pre>
+scene.fetchTemplate('views/home.html', templateLoadedCallback);
+</pre>
+
+
+<h4>Transitions</h4>
+<h5>fadeIn(callback)</h5>
+<p>Fades a scene in and then fires any callback.</p>
+<pre>
+scene.fadeIn( callbackFunction );
+</pre>
+
+<h5>fadeOut(callback)</h5>
+<p>Fades a scene out and then fires any callback.  fadeOut() automatically calls destroy on completion.</p>
+<pre>
+scene.fadeOut();
+</pre>
+
+<h5>slideIn(distance, callback)</h5>
+<p>Slides a scene in from right and then fires any callback. The distance is the amount to slide in.  Typically this will be the stage width.</p>
+<pre>
+scene.slideIn(App.stageWidth(), callbackFunction);
+</pre>
+
+<h5>slideOut(distance, callback)</h5>
+<p>Slides a scene out and then fires any callback.  slideOut() automatically calls destroy on completion.</p>
+<pre>
+scene.slideOut(App.stageWidth());
+</pre>
