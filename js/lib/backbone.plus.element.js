@@ -6,6 +6,8 @@
 
 (function(Backbone, _) {
 
+	"use strict";
+
 	Backbone.Element = Backbone.View.extend ({
 		className: 'element'
 	});
@@ -30,10 +32,15 @@
 		*	@param : value : value to assign
 		*/
 		
-		set: function(name, value) {
+		set: function(name, value, redraw) {
 			
+			var doDraw = redraw || true;
+
 			this[name] = value;
-			this.draw();
+
+			if(doDraw) {
+				this.draw();
+			}
 			
 			return this;
 		},
@@ -46,9 +53,10 @@
 		*	@param : args : object with arguments to set
 		*/
 
-		attr: function(args) {
+		attr: function(args, redraw) {
 
-			var props = {};
+			var props = {},
+				doDraw = redraw || true;
 
 			for (var key in args) {
 				if( this[key] !== args[key]) {
@@ -57,14 +65,17 @@
 			}
 
 			_.extend(this, props);
-			this.draw();
+
+			if(doDraw) {
+				this.draw();
+			}
 
 			return this;
 		},
 
 		/*
 		*	Wrapper to assign css.
-		*	Example: element.css({borderRadius: '1px'}});
+		*	Example: element.css({borderRadius: '1px'});
 		*
 		*	@method : css
 		*	@param : args : object with style arguments to set

@@ -1,22 +1,35 @@
 <h4>Introduction</h4>
-<p>The idea behind Backbone+ is simple.  Make development of HTML apps and games with Backbone easier.  Backbone+ aims to do this by reducing some of the redundant boilerplate that needs to be written each time an app is created. Layout, animation, transisitons, PhoneGap integration are hard.  But it doesn't have to be. Combining require.js, zepto and a little special sauce we can make building apps easy and fun.</p>
+<p>The idea behind Backbone+ is simple.  Make development of HTML apps and games with Backbone easier.  Backbone+ aims to do this by reducing some of the redundant boilerplate that needs to be written each time an app is created. Layout, animation, transitions, and PhoneGap integration is hard.  But it doesn't have to be. Combining require.js, zepto and a little special sauce we can make building apps easy and fun. <strong>In fact this entire site is made with Backbone+.</strong></p>
 
 <h4>Concepts</h4>
-<p>Each Backbone+ application has several components.  Every visual object in Backbone+ is inherited from Backbone.Element.  Backbone.Scene and Backbone.Stage are specialized visual elements based on Backbone.Element.  Below is each object and how different components are attached.</p>
-
-<pre>
-Backbone.Element -> Backbone.Scene -> Backbone.Stage
-|── Properties
-|── Drawing
-|── Animation
-|                   |── transitions
-|                   |── templating
-|                   |── element management
-|                   |                      | viewport
-|                   |                      | scene management
-
-</pre>
-
+<p>Each Backbone+ application has several components.  Every visual object in Backbone+ is inherited from Backbone.Element.  Backbone.Scene and Backbone.Stage are specialized visual elements based on Backbone.Element.  Below is each object and some of the responsibilities they contain.</p>
+<table width="100%">
+	<thead>
+		<tr>
+			<th>Backbone.Element</th>
+			<th>Backbone.Scene</th>
+			<th>Backbone.Stage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				Basic Properties<br>
+				Drawing & Layout<br>
+				Animation
+			</td>
+			<td>
+				Transitions<br>
+				Template Helpers<br>
+				Nested Backbone.Elements
+			</td>
+			<td>
+				Viewport Helpers<br>
+				Scene Management
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 <h4>App Structure</h4>
 <pre>
@@ -50,7 +63,7 @@ require(['router'], function(AppRouter) {
 
   // App Ready
   $(document).ready(function() {
-	App = Backbone.Stage();
+	App = new Backbone.Stage();
 	App.router = new AppRouter();
   });
 

@@ -5,7 +5,7 @@
 /* =============================================================================
    HTML5 display definitions
    ========================================================================== */
-
+   
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
 audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 
@@ -81,12 +81,21 @@ body {
   color: #333;
 }
 
-h1, h2, h3, h4, h5, h6, ul.menu li {
+h1, h2, h3, h4, h5, h6, ul.menu li, th {
     font-family: 'League Gothic', helvetica, arial, sans-serif;
 }
 
-h1 { font-size:5.0em; }
-footer {}
+h1 { 
+  font-size: 5.0em;
+}
+
+th {
+  font-size: 1.7em;
+  color: #666;
+  border-top: 1px solid @blue;
+  border-bottom: 1px solid @blue;
+  padding: 10px 0 10px 0;
+}
 
 pre {
   background: #DDD;
@@ -260,7 +269,7 @@ span.blue {
   }
 
   h4 {
-    font-size: 2.0em;
+    font-size: 2.5em;
     padding: 0;
     margin: 1.0em 0 0.5em 0;
   }
@@ -269,6 +278,10 @@ span.blue {
     font-size: 1.5em;
     padding: 0;
     margin: 1.0em 0 0.5em 0;
+  }
+
+  td {
+    padding: 1.0em 0 0 0;
   }
 }
 

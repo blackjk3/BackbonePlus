@@ -1,2 +1,73 @@
 <h4>Backbone.Element</h4>
-<p>A Backbone.Element is the fundamental building block of and other visual objects within Backbone+. It inherits from Backbone.View.</p>
+<p>A Backbone.Element is the fundamental building block of all visual objects within Backbone+. It inherits from Backbone.View and is extendable. Properties can be set using accessor methods and will be redrawn using CSS3 transforms when possible for HW acceleration.</p>
+
+<h4>Creating an Element</h4>
+<pre>
+var element = new Backbone.Element({ tagName: 'footer' });
+</pre>
+
+<h4>Extending an Element</h4>
+<pre>
+var NewAndImprovedElement = Backbone.Element.extend({
+    initialize: function(options) {},
+    render: function() {},
+    newFunctionThatRocks: function() {}
+});
+
+var element = new NewAndImprovedElement();
+</pre>
+
+<h4>Functions</h4>
+
+<h5>set( name, value )</h5>
+<p>Sets a specific property on a Backbone.Element. Set will trigger a redraw. Redrawn properties include x, y, z, w, h, alpha, rotation, and scale. Note: If you do not want to redraw there is a third optional parameter where false can be passed in. Ex. set( name, value, false )</p>
+<pre>
+element.set('x', 200);
+</pre>
+
+<h5>attr( args )</h5>
+<p>Sets multiple properties on a Backbone.Element. Attr also triggers a redraw.  Note: attr( args, false ) will skip the redraw.</p>
+<pre>
+element.attr({x:400, y:300, z:1, w:200, h:200, rotation:45, alpha:0.3}});
+</pre>
+
+<h5>css( args )</h5>
+<p>Sets multiple css properties at once.</p>
+<pre>
+element.css({borderRadius: '1px', color: '#000'})
+</pre>
+
+<h5>tween( args )</h5>
+<p>Animates a Backbone.Element over a specified duration.  Under the hood, tween will use a requestAnimationFrame or setInterval to calculate each frame and preform a redraw accordingly. Tween is great for animations that are time dependent or require regular progress updates.</p>
+<p>Arguments: to: object, duration: milliseconds, delay: milliseconds, easing: see (Backbone.Easing), complete: callbackFunction, progress: callbackFunction (sends a pct complete)</p>
+<pre>
+var tween = element.tween({
+    to: { scale: 0, rotation: 100 },
+    duration: 10000,
+    complete: completeCallback, 
+    progress: progressCallback,
+    easing: Backbone.Easing.Bounce.EaseOut
+});
+</pre>
+
+<h5>removeTween( tween )</h5>
+<p>Stops and removes a tween from a Backbone.Element.</p>
+<pre>
+element.removeTween(tween);
+</pre>
+
+<h5>removeAllTweens()</h5>
+<p>Stops and removes all tweens attached to a Backbone.Element.</p>
+<pre>
+element.removeAllTweens();
+</pre>
+
+<h5>delay( args )</h5>
+<p>Sets up a generic delay timer.  Useful for all sorts of internal timing events within an app or game.</p>
+<pre>
+element.delay({
+    duration: 1000,
+    complete: completeCallback, 
+    progress: progressCallback
+});
+</pre>

@@ -1,4 +1,6 @@
-(function (Backbone, _) {
+(function (Backbone, _, $) {
+
+	"use strict";
 
 	var CoreAnimation = Backbone.CoreAnimation;
 
@@ -15,6 +17,7 @@
 
 		initialize: function() {
 			
+			var doc = $(document);
 			doc.on(this.EVENTS.PAUSE, this.pause);
 			doc.on(this.EVENTS.RESUME, this.resume);
 		},
@@ -45,4 +48,4 @@
 	
 	Backbone.PhoneGap = new PhoneGap();
 
-})(this.Backbone, this._);
+})(this.Backbone, this._, Zepto);

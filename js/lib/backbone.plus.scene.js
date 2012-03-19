@@ -3,7 +3,9 @@
 * Copyright 2012, Jason Kadrmas (@itooamaneatguy)
 */
 
-(function(Backbone, _) {
+(function(Backbone, _, $) {
+
+	"use strict";
 
 	Backbone.Scene = Backbone.Element.extend({
 		className: 'scene'
@@ -28,6 +30,7 @@
 		// Can be overridden by extended class.
 		hide: function() {
 			this.$el.hide();
+			this.destroy();
 		},
 
 		/*
@@ -152,12 +155,12 @@
 		},
 
 		/*
-		*	Removes all views from scene
+		*	Removes all elements from scene
 		*	@method : removeAll
 		*/
 
 		removeAll: function() {
-			children = null;
+			this.children = null;
 		},
 
 		/*
@@ -200,4 +203,4 @@
 		}
 	});
 
-})(this.Backbone, this._);
+})(this.Backbone, this._, Zepto);
