@@ -10,3 +10,67 @@ $(document).ready(function() {
 	App.router = new AppRouter();
 });
 </pre>
+
+<h4>Functions</h4>
+
+<h5>render()</h5>
+<p>Inherited from Backbone.View. The default implementation of render is a no-op. Override this function with your own logic.</p>
+
+<h5>resize(w, h)</h5>
+<p>Resizes the internal stage coordinates.  Typically this will be called from a window.resize event callback. Example</p>
+<pre>
+$(window).on('resize', function() {
+   stage.resize(w, h);		
+});	
+</pre>
+
+<h5>changeScene(scene, name)</h5>
+<p>Handles processing and changing the current scene.  Most likely this method will be called from within a Backbone.Router.</p>
+<pre>
+var scene = new MainScene();
+stage.changeScene(scene, 'main');
+</pre>
+
+<h5>currentScene()</h5>
+<p>Returns the current scene.</p>
+<pre>
+var scene = stage.currentScene();
+</pre>
+
+<h5>currentSceneName()</h5>
+<p>Returns the current scene name.</p>
+<pre>
+var sceneName = stage.currentSceneName();
+</pre>
+
+<h5>stageWidth()</h5>
+<p>Returns the current scene width.</p>
+<pre>
+var width = stage.stageWidth();
+</pre>
+
+<h5>stageHeight()</h5>
+<p>Returns the current scene height.</p>
+<pre>
+var width = stage.stageHeight();
+</pre>
+
+<h5>stageOrientation()</h5>
+<p>Returns the current scene orientation.  Returns either portrait or landscape.</p>
+<pre>
+var landscape = stage.stageOrientation();
+</pre>
+
+<h5>calcWidth(pct)</h5>
+<p>Returns a percentage width based on stageWidth.</p>
+<pre>
+// Returned width will be 50% of the stage width
+var width = stage.calcWidth(0.5);
+</pre>
+
+<h5>calcHeight(pct)</h5>
+<p>Returns a percentage height based on stageHeight.</p>
+<pre>
+// Returned height will be 50% of the stage height
+var height = stage.calcHeight(0.5);
+</pre>

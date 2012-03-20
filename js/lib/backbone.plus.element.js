@@ -4,7 +4,7 @@
  * License: MIT
  */
 
-(function(Backbone, _) {
+(function(Backbone, _, Modernizr) {
 
 	"use strict";
 
@@ -160,4 +160,4 @@
 		}
 	});
 
-})(this.Backbone, this._);
+})(this.Backbone, this._, this.Modernizr);
