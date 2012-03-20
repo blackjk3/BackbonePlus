@@ -133,6 +133,7 @@
 
 	Backbone.Animation = function() {
 		this.tweens = [];
+		this.map = [];
 	};
 
 	_.extend(Backbone.Animation.prototype, Backbone.Events, {
@@ -174,31 +175,6 @@
 			}
 
 			this.tweens.length  = 0;
-		},
-
-		/*
-		*	A method to animate using CSS3 properties.
-		*	@method : animate
-		*	@param transforms : transforms object. Ex { rotate:'30deg', scale:0, translate: '30px, 50px'}
-		*	@param duration : duration of animation
-		*	@param easing : easing function
-		*	@param callback : callback function
-		*/
-		
-		animate: function(transforms, duration, delay, easing, callback) {
-			// Use Zepto animate
-			var _self = this,
-				_delay = delay !== undefined ? delay : 0;
-
-			if(_delay !== 0) {
-				this.delay({ duration: _delay, complete:function() {
-					_self.$el.animate(transforms, { duration: duration, easing: easing, complete: callback });
-				}});
-			} else {
-				_self.$el.animate(transforms, { duration: duration, easing: easing, complete: callback });
-			}
-			
-			return _self;
 		}
 
 	});
