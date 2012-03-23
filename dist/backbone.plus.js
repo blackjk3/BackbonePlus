@@ -564,10 +564,6 @@
 			var i = _.indexOf(this.listeners, key );
 			this.listeners.splice( i, 1 );
 
-			/*if(this.listeners.length === 0) {
-				this.stop();
-			}*/
-
 			console.log("CORE :: LISTENERS :: " + this.listeners);
 		}
 
@@ -602,6 +598,16 @@
 		},
 
 		delay: function(args) {
+			return this.addTween(null, args);
+		},
+
+		timer: function() {
+			
+			var args = {
+				autoStart: false,
+				duration: -1
+			};
+
 			return this.addTween(null, args);
 		},
 
@@ -662,14 +668,18 @@
 		this.elapsed = 0;
 		this.elapsedTime = 0;
 		this.delay = args.delay || 0;
+		this.delta = 0;
 		this.duration = args.duration || 1000;
 		this.easing = args.easing || Backbone.Easing.Linear.EaseNone;
+		this.autoStart = args.autoStart;
 
 		// Callbacks
 		this.progress = args.progress || null;
 		this.callback = args.complete || null;
 
-		this.start();
+		if(this.autoStart === true || this.autoStart === undefined) {
+			this.start();
+		}
 	};
 
 	_.extend(Backbone.Tween.prototype, Backbone.Events, {
@@ -723,9 +733,22 @@
 			return this;
 		},
 
+		resume: function() {
+
+			if(this.startTime !== null) {
+				this.delta = this.elapsedTime;
+				this.startTime = Date.now();
+				this.listen();
+			} else {
+				this.start();
+			}
+			
+			return this;
+		},
+
 		stop: function() {
 			console.log("CORE :: STOP TWEEN");
-			this.elapsedTime = Date.now() - this.startTime;
+			this.elapsedTime = Date.now() - this.startTime + this.delta;
 			this.stopListening();
 
 			return this;
@@ -738,6 +761,7 @@
 		step: function() {
 
 			var current = Date.now(),
+				delta = current - this.startTime + this.delta,
 				value,
 				_currentValues = this._currentValues,
 				_startValues = this._startValues,
@@ -749,11 +773,18 @@
 			}
 
 			// Set elapsed time
-			this.elapsed = ( current - this.startTime ) / this.duration;
+			this.elapsedTime = delta;
 			
-			// Elapsed can't be greater than 1.
-			this.elapsed = this.elapsed > 1 ? 1 : this.elapsed;
-			value = this.easing( this.elapsed );
+			// Duration is infinite
+			if(this.duration !== -1) {
+				this.elapsed = delta / this.duration;
+
+				// Elapsed can't be greater than 1.
+				this.elapsed = this.elapsed > 1 ? 1 : this.elapsed;
+				value = this.easing( this.elapsed );
+			} else {
+				value = delta;
+			}
 
 			// Actually update our values and redraw
 			if(this.obj) {
