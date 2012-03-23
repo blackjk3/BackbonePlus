@@ -7,7 +7,7 @@
 var App = App || {};
 
 require(['router'], function(AppRouter) {
-	
+
 	// App Ready
 	$(document).ready(function() {
 		App = new Backbone.Stage();

@@ -247,6 +247,10 @@ body.stage header {
 #index article {
   margin: 2.0em;
 }
+#index .display {
+  font-family: 'ChunkFive';
+  font-size: 2.0em;
+}
 .element {
   position: absolute;
 }

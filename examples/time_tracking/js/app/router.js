@@ -8,7 +8,7 @@
  define(['views/index'], function(IndexScene) {
 
 	var AppRouter = Backbone.Router.extend({
-	
+
 		routes: {
 			// Define some URL routes
 			'/index': 'index',
@@ -22,7 +22,7 @@
 		},
 
 		index: function() {
-			
+
 			var scene = new IndexScene();
 			App.changeScene(scene, 'index');
 		},
@@ -33,7 +33,7 @@
 		}
 
 	});
-  
+
   return AppRouter;
 
 });
