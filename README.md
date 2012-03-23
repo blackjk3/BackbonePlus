@@ -9,4 +9,4 @@ Features
 * Scene Transitions
 * PhoneGap integration
 
-For more info check out the github page. [http://blackjk3.github.com/BackbonePlus/][1]: http://blackjk3.github.com/BackbonePlus/
+For more info check out the github page. http://blackjk3.github.com/BackbonePlus/
