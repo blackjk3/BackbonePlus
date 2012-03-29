@@ -39,7 +39,7 @@ element.css({borderRadius: '1px', color: '#000'})
 
 <h5>tween( args )</h5>
 <p>Animates a Backbone.Element over a specified duration.  Under the hood, tween will use a requestAnimationFrame or setInterval to calculate each frame and preform a redraw accordingly. Tween is great for animations that are time dependent or require regular progress updates.</p>
-<p>Arguments: to: object, duration: milliseconds, delay: milliseconds, easing: see (Backbone.Easing), complete: callbackFunction, progress: callbackFunction (sends a pct complete)</p>
+<p>Arguments: to: object, duration: milliseconds, delay: milliseconds, easing: see (Backbone.Easing), complete: callbackFunction, progress: callbackFunction (sends a pct complete), autoStart: true/false</p>
 <pre>
 var tween = element.tween({
     to: { scale: 0, rotation: 100 },
@@ -63,7 +63,7 @@ element.removeAllTweens();
 </pre>
 
 <h5>delay( args )</h5>
-<p>Sets up a generic delay timer.  Useful for all sorts of internal timing events within an app or game.</p>
+<p>Sets up a generic delay.  Useful for all sorts of internal timing events within an app or game. Arguments: duration, complete, progress.  Progress sends out pct complete.</p>
 <pre>
 element.delay({
     duration: 1000,
@@ -71,3 +71,12 @@ element.delay({
     progress: progressCallback
 });
 </pre>
+
+<h5>timer( args )</h5>
+<p>Sets up a generic timer.  Useful for all sorts of internal timing events. Example: A stopwatch. Arguments: progress.  Progress will send out current time elapsed.</p>
+<pre>
+var timer = element.timer();
+timer.progress = this.updateDisplay;
+timer.resume();
+</pre>
+

@@ -1,0 +1,14 @@
+<h4>Backbone.Phonegap</h4>
+<p>Optional helper class for common Phonegap operations.</p>
+
+<h4>Functions</h4>
+
+<h5>pause() & resume()</h5>
+<p>Internal methods that will fire if your app goes into the background or resumes from the background.  Backbone+ will automatically shut down any timers / animations when the app goes into the background.</p>
+
+<h5>connection()</h5>
+<p>Checks the active network connection that is being used. Returns the current connection.</p>
+<pre>
+	var conn = Backbone.PhoneGap.connection();
+	// conn => Connection.CELL_3G
+</pre>
