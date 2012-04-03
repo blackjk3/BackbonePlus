@@ -142,16 +142,12 @@
 			return this.addTween(null, args);
 		},
 
-		timer: function(elapsedTime) {
+		timer: function() {
 			
 			var args = {
 				autoStart: false,
 				duration: -1
 			};
-
-			if(elapsedTime !== undefined) {
-				args.elapsedTime = elapsedTime;
-			}
 
 			return this.addTween(null, args);
 		},
@@ -211,7 +207,7 @@
 		// Timing
 		this.startTime = null;
 		this.elapsed = 0;
-		this.elapsedTime = args.elapsedTime || 0;
+		this.elapsedTime = 0;
 		this.delay = args.delay || 0;
 		this.delta = 0;
 		this.duration = args.duration || 1000;
@@ -278,9 +274,11 @@
 			return this;
 		},
 
-		resume: function() {
+		resume: function(elapsedTime) {
 
-			if(this.startTime !== null || this.elapsedTime !== 0) {
+            this.elapsedTime = elapsedTime || this.elapsedTime;
+
+			if(this.startTime !== null) {
 				this.delta = this.elapsedTime;
 				this.startTime = Date.now();
 				this.listen();
