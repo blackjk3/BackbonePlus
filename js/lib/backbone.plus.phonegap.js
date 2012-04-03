@@ -6,6 +6,7 @@
 
 	var PhoneGap = function() {
 		this.ready = false;
+		this.onDevice = false;
 	};
 
 	_.extend(PhoneGap.prototype, Backbone.Events, {

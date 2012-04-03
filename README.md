@@ -1,6 +1,6 @@
 Backbone<span class="blue">&#43;</span> is a lightweight framework built on top of the very popular backbone library.<br>Just some features that are added to backbone plus are
 
-Features 
+Features
 -------------
 
 * Stage Management

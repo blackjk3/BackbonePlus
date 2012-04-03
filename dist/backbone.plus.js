@@ -601,12 +601,16 @@
 			return this.addTween(null, args);
 		},
 
-		timer: function() {
+		timer: function(elapsedTime) {
 			
 			var args = {
 				autoStart: false,
 				duration: -1
 			};
+
+			if(elapsedTime !== undefined) {
+				args.elapsedTime = elapsedTime;
+			}
 
 			return this.addTween(null, args);
 		},
@@ -666,7 +670,7 @@
 		// Timing
 		this.startTime = null;
 		this.elapsed = 0;
-		this.elapsedTime = 0;
+		this.elapsedTime = args.elapsedTime || 0;
 		this.delay = args.delay || 0;
 		this.delta = 0;
 		this.duration = args.duration || 1000;
@@ -735,7 +739,7 @@
 
 		resume: function() {
 
-			if(this.startTime !== null) {
+			if(this.startTime !== null || this.elapsedTime !== 0) {
 				this.delta = this.elapsedTime;
 				this.startTime = Date.now();
 				this.listen();
@@ -1380,6 +1384,7 @@
 
 	var PhoneGap = function() {
 		this.ready = false;
+		this.onDevice = false;
 	};
 
 	_.extend(PhoneGap.prototype, Backbone.Events, {
